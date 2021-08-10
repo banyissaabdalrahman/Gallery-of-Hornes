@@ -9,3 +9,8 @@
   height: 300px;
   object-fit: contain;
 }
+
+.inputField {
+  display: flex;
+  justify-content: center;
+}
