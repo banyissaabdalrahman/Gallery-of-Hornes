@@ -2,19 +2,23 @@ import React, { Component } from "react"
 import HornedBeasts from "./HornedBeasts"
 class Main extends Component {
   render() {
-    const { data, onShow, onSearch } = this.props
+    const { data, onShow, onSearch, search } = this.props
+
+    const filteredBeast = data.filter((beast) =>
+      beast.keyword.includes(search.toLowerCase())
+    )
     return (
       <React.Fragment>
         <div className="inputField">
+          <label className="m-2">Search for beast:</label>
           <input
             onChange={onSearch}
             type="text"
-            placeholder="Enter beast name"
+            placeholder="Enter beast keyword"
           />
-          <button className="btn btn-primary btn-sm m-2">search</button>
         </div>
         <div className="hornedBeasts">
-          {data.map((beast, key) => {
+          {filteredBeast.map((beast, key) => {
             return (
               <div key={key}>
                 <HornedBeasts
