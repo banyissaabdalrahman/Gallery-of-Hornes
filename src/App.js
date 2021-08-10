@@ -30,12 +30,11 @@ class App extends Component {
 
   handleSearch = (event) => {
     this.setState({ search: event.target.value })
-    console.log(this.state.search)
   }
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Header />
         <Main
           data={data}
