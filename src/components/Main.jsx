@@ -1,14 +1,24 @@
 import React, { Component } from "react"
+import { Form } from "react-bootstrap"
 import HornedBeasts from "./HornedBeasts"
 class Main extends Component {
   render() {
-    const { data, onShow, onSearch, search } = this.props
-
-    const filteredBeast = data.filter((beast) =>
+    const { onShow, onSearch, search, onSelectedValue, selectedValue } =
+      this.props
+    const filteredBeast = selectedValue.filter((beast) =>
       beast.keyword.includes(search.toLowerCase())
     )
     return (
       <React.Fragment>
+        <Form className="m-2">
+          <Form.Select onChange={onSelectedValue}>
+            <option value="0">All</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="100">woow</option>
+          </Form.Select>
+        </Form>
         <div className="inputField">
           <label className="m-2">Search for beast:</label>
           <input
