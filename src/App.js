@@ -1,4 +1,4 @@
-import "./App.css"
+import "./styles/styles.css"
 import React, { Component } from "react"
 import data from "./helpers/data.json"
 import Header from "./components/Header"
@@ -45,8 +45,11 @@ class App extends Component {
   render() {
     const { show, url, title, description, search, selectedValue } = this.state
     return (
-      <div className="container">
-        <Header />
+      <div className="appContainer">
+        <Header
+          onSearch={this.handleSearch}
+          onSelectedValue={this.handleSelectedValue}
+        />
         <Main
           data={data}
           search={search}

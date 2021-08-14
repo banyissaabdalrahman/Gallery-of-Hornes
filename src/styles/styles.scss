@@ -1,4 +1,4 @@
-.container {
+.appContainer {
   padding: 15px 0;
   display: flex;
   flex-direction: column;
@@ -19,4 +19,14 @@
 .inputField {
   display: flex;
   justify-content: center;
+}
+
+.navbarCollapse {
+  display: flex !important;
+  justify-content: space-between;
+  margin: 0px 10px;
+}
+
+.navForm {
+  width: 1000px;
 }
