@@ -1,22 +1,32 @@
 import "./styles/styles.css"
 import React, { Component } from "react"
-import data from "./helpers/data.json"
 import Header from "./components/Header"
 import Main from "./components/Main"
 import Footer from "./components/Footer"
 import SelectedBeast from "./components/SelectedBeast"
+import axios from "axios"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       show: false,
+      data: "",
       url: "",
       title: "",
       description: "",
       search: "",
-      selectedValue: data,
+      selectedValue: [],
     }
+  }
+
+  componentDidMount = () => {
+    axios
+      .get(`http://localhost:8010/data`)
+      .then((beastsData) =>
+        this.setState({ selectedValue: beastsData.data, data: beastsData.data })
+      )
+      .catch((error) => console.log(error))
   }
 
   handleClose = () => this.setState({ show: false })
@@ -35,7 +45,7 @@ class App extends Component {
 
   handleSelectedValue = (event) => {
     this.setState({
-      selectedValue: data.filter((item) => {
+      selectedValue: this.state.data.filter((item) => {
         if (item.horns === parseInt(event.target.value)) return item
         else if (parseInt(event.target.value) === 0) return item
       }),
@@ -43,7 +53,8 @@ class App extends Component {
   }
 
   render() {
-    const { show, url, title, description, search, selectedValue } = this.state
+    const { show, url, title, description, search, selectedValue, data } =
+      this.state
     return (
       <div className="appContainer">
         <Header
