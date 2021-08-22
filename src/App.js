@@ -21,8 +21,9 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    const url = process.env.REACT_APP_URL
     axios
-      .get(`http://localhost:8010/data`)
+      .get(url)
       .then((beastsData) =>
         this.setState({ selectedValue: beastsData.data, data: beastsData.data })
       )
